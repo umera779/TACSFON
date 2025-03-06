@@ -1,0 +1,251 @@
+<!-- <div class="container mt-4">
+    <h1>Add New Contact</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Contact</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Contact</h1>
+        
+        <!-- <form id="contact-form"> -->
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <!-- <input type="text" id="name" name="name" required> -->
+                {{ form.name}}
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <!-- <input type="tel" id="phone" name="phone" required> -->
+                {{ form.phone_number}}
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Save</button>
+            <br>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <nav>
+        <div class="nav-content">
+          <div class="toggle-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+          </div>
+
+          {% if request.user.is_superuser%}
+          <span style="--i:2;">
+            <a href="{% url 'index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: rotate(270deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);"><path d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"></path></svg></a>
+          </span>
+
+          <span style="--i:4;">
+            <a href="{% url 'add_new_contacts' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: rotate(180deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"><path d="M18.944 11.112C18.507 7.67 15.56 5 12 5 9.244 5 6.85 6.611 5.757 9.15 3.609 9.792 2 11.82 2 14c0 2.757 2.243 5 5 5h11c2.206 0 4-1.794 4-4a4.01 4.01 0 0 0-3.056-3.888zM13 14v3h-2v-3H8l4-5 4 5h-3z"></path></svg></a>
+          </span>
+        {% endif %}
+        </div>
+      </nav>
+
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+nav{
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 80px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+nav .nav-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-45deg);
+}
+.nav-content .toggle-btn,
+.nav-content span a{
+  height: 60px;
+  width: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.nav-content .toggle-btn{
+  font-size: 35px;
+  color: #0e2431;
+  z-index: 100;
+  cursor: pointer;
+  transform: rotate(-225deg);
+  transition: all 0.6s ease;
+}
+nav.open .toggle-btn{
+  transform: rotate(0deg);
+}
+.nav-content span{
+  position: absolute;
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+nav.open .nav-content span{
+  transform: rotate(calc(var(--i) * (360deg/8))) translateY(120px);
+  opacity: 1;
+}
+.nav-content span a{
+  text-decoration: none;
+  transform: rotate(45deg);
+}
+.nav-content span a i{
+  font-size: 24px;
+  color: #0e2431;
+  transform: rotate(calc(var(--i) * (360deg/ -8)));
+  opacity: 0.8;
+  transition: 0.2s;
+}
+.nav-content span a:hover i{
+  opacity: 1;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+
+    .container {
+        padding: 15px; /* Less padding on mobile */
+    }
+
+    .btn {
+        padding: 12px; /* Adjust button padding */
+    }
+}
+</style>
+
+<script>
+    // getting HTML elements
+  const nav = document.querySelector("nav"),
+      toggleBtn = nav.querySelector(".toggle-btn");
+  
+  toggleBtn.addEventListener("click" , () =>{
+    nav.classList.toggle("open");
+  });
+  
+  // js code to make draggable nav
+  function onDrag({movementY}) { //movementY gets mouse vertical value
+  const navStyle = window.getComputedStyle(nav), //getting all css style of nav
+        navTop = parseInt(navStyle.top), // getting nav top value & convert it into string
+        navHeight = parseInt(navStyle.height), // getting nav height value & convert it into string
+        windHeight = window.innerHeight; // getting window height
+  
+  nav.style.top = navTop > 0 ? `${navTop + movementY}px` : "1px";
+  if(navTop > windHeight - navHeight){
+    nav.style.top = `${windHeight - navHeight}px`;
+  }
+  }
+  
+  //this function will call when user click mouse's button and  move mouse on nav
+  nav.addEventListener("mousedown", () =>{
+  nav.addEventListener("mousemove", onDrag);
+  });
+  
+  //these function will call when user relase mouse button and leave mouse from nav
+  nav.addEventListener("mouseup", () =>{
+  nav.removeEventListener("mousemove", onDrag);
+  });
+  nav.addEventListener("mouseleave", () =>{
+  nav.removeEventListener("mousemove", onDrag);
+  });
+  
+  </script>

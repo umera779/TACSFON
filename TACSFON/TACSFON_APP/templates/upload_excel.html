@@ -1,0 +1,153 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Attendance</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Attendance Excel</h1>
+        
+        <div class="instruction-card">
+            <div class="card-header">
+                Excel Format Instructions
+            </div>
+            <div class="card-body">
+                
+        
+            </div>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <!-- <label for="file-upload">Choose Excel File:</label> -->
+                {{ form.as_p }}
+                <!-- <input type="file" id="file-upload" name="file" accept=".xlsx, .xls" required> -->
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.instruction-card, .tips-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.example-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* .example-table th, .example-table td {
+    border: 1px solid #ddd, 
+     padding: 8px;
+    text-align: left;
+} */
+
+.example-table th {
+    background-color: #f2f2f2;
+}
+
+.alert-info {
+    background-color: #e7f3fe;
+    color: #31708f;
+    border: 1px solid #bce8f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.tips-card {
+    background: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+</style>
